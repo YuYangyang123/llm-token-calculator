@@ -1,0 +1,81 @@
+<view style="text-align:center;padding:80rpx 0" wx:if="{{!ready}}">
+  <text style="font-size:60rpx">⏳</text>
+  <view style="color:#94a3b8;font-size:28rpx;margin-top:12rpx">加载中...</view>
+</view>
+
+<block wx:else>
+<view class="model-badge">
+  <text>当前模型：</text>
+  <text style="font-weight:700">{{modelLabel}}</text>
+</view>
+
+<view class="card">
+  <view class="card-title">🎯 选择对话等级</view>
+  <view class="card-desc">点击等级查看100次对话的费用</view>
+  <view class="level-grid">
+    <view wx:for="{{levels}}" wx:key="level" wx:for-index="i"
+      class="level-btn {{selectedLevel && selectedLevel.level === item.level ? 'selected' : ''}}"
+      style="border-color:{{selectedLevel && selectedLevel.level === item.level ? item.color : '#e2e8f0'}}"
+      data-idx="{{i}}" bindtap="selectLevel">
+      <text class="level-icon">{{item.icon}}</text>
+      <text class="level-name">{{item.name}}</text>
+      <text class="level-tokens">{{item.tokens_per_conversation}}t</text>
+    </view>
+  </view>
+</view>
+
+<view class="card result-card" wx:if="{{hundred}}">
+  <view class="card-title">{{selectedLevel.icon}} {{selectedLevel.name}} — 100次对话</view>
+  <view style="display:flex;flex-wrap:wrap;gap:12rpx;margin-bottom:20rpx">
+    <view style="flex:1;min-width:180rpx;padding:20rpx;background:#f8fafc;border-radius:12rpx">
+      <text style="font-size:22rpx;color:#64748b">总 TOKEN</text>
+      <view style="font-size:36rpx;font-weight:800">{{hundred.tokens}}</view>
+    </view>
+    <view style="flex:1;min-width:180rpx;padding:20rpx;background:#f8fafc;border-radius:12rpx">
+      <text style="font-size:22rpx;color:#64748b">每次对话</text>
+      <view style="font-size:36rpx;font-weight:800">{{hundred.perConvo}}</view>
+    </view>
+    <view style="width:100%;padding:20rpx;background:#eef2ff;border-radius:12rpx">
+      <text style="font-size:22rpx;color:#64748b">预估费用</text>
+      <view style="font-size:36rpx;font-weight:800;color:#4f46e5">{{hundred.cost}}</view>
+    </view>
+  </view>
+
+  <view style="border-top:1rpx solid #e2e8f0;padding-top:16rpx">
+    <text style="font-size:24rpx;font-weight:600;color:#64748b">各等级 100 次费用对比</text>
+    <view wx:for="{{compare}}" wx:key="level" style="display:flex;align-items:center;gap:10rpx;margin-top:10rpx">
+      <text style="font-size:30rpx">{{item.icon}}</text>
+      <text style="font-size:22rpx;width:60rpx;font-weight:500">{{item.name}}</text>
+      <view style="flex:1;height:10rpx;background:#f1f5f9;border-radius:5rpx">
+        <view style="height:100%;border-radius:5rpx;background:{{item.color}};width:{{item.cost > 0 ? (item.cost / compare[compare.length-1].cost * 100) : 0}}%"></view>
+      </view>
+      <text style="font-size:22rpx;font-weight:600;width:120rpx;text-align:right">{{item.costDisplay}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-title">✍️ 对话输入估算</view>
+  <view class="card-desc">输入问题内容，智能估算 TOKEN 消耗</view>
+  <textarea class="dialog-textarea" value="{{dialogText}}" bindinput="onTextInput"
+    placeholder="在这里输入你的问题...&#10;例如：请用 Python 写一个快速排序算法" maxlength="-1"/>
+
+  <view class="stat-grid" wx:if="{{dialogText && selectedLevel && textResult}}">
+    <view class="stat-item highlight">
+      <text class="stat-label">输入文本长度</text>
+      <text class="stat-value">{{textResult.chars}} 字符</text>
+    </view>
+    <view class="stat-item highlight">
+      <text class="stat-label">估算 TOKEN</text>
+      <text class="stat-value">{{textResult.tokens}} tokens</text>
+    </view>
+    <view class="stat-item cost" style="width:100%">
+      <text class="stat-label">预估费用</text>
+      <text class="stat-value">{{textResult.cost}}</text>
+    </view>
+  </view>
+  <view wx:if="{{dialogText && !selectedLevel}}" style="text-align:center;color:#f59e0b;padding:16rpx;font-size:26rpx">
+    ← 请先选择对话等级
+  </view>
+</view>
+</block>

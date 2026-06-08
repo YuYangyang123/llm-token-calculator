@@ -1,0 +1,65 @@
+<!-- 加载中 -->
+<view style="text-align:center;padding:80rpx 0" wx:if="{{loading}}">
+  <text style="font-size:60rpx">⏳</text>
+  <view style="color:#94a3b8;font-size:28rpx;margin-top:12rpx">正在加载数据...</view>
+</view>
+
+<!-- 加载完成 -->
+<block wx:else>
+  <!-- 模型选择器 -->
+  <view class="picker-wrap">
+    <picker range="{{modelLabels}}" value="{{modelIndex}}" bindchange="onModelChange">
+      <view class="picker-btn">
+        <text>{{modelLabels[modelIndex] || '请选择模型'}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 模型信息 -->
+  <view class="model-badge" wx:if="{{selectedModel}}">
+    <text class="badge-provider">{{selectedModel.provider}}</text>
+    <text class="badge-name">{{selectedModel.name}}</text>
+    <text class="badge-price">入${{selectedModel.input_price_per_1m_tokens}}/1M</text>
+  </view>
+
+  <!-- 货币切换 -->
+  <view class="currency-wrap">
+    <view class="currency-btn {{currency === 'CNY' ? 'active' : ''}}" data-code="CNY" bindtap="onCurrency">
+      <text class="currency-symbol">¥</text><text>人民币</text>
+    </view>
+    <view class="currency-btn {{currency === 'USD' ? 'active' : ''}}" data-code="USD" bindtap="onCurrency">
+      <text class="currency-symbol">$</text><text>美元</text>
+    </view>
+    <view class="currency-btn {{currency === 'EUR' ? 'active' : ''}}" data-code="EUR" bindtap="onCurrency">
+      <text class="currency-symbol">€</text><text>欧元</text>
+    </view>
+  </view>
+
+  <!-- 三大入口 -->
+  <view class="entry-btns">
+    <view class="entry-btn" bindtap="goToken">
+      <text class="entry-icon">📊</text>
+      <view>
+        <text class="entry-title">输入 TOKEN</text>
+        <text class="entry-desc">计算费用 & 支撑对话次数</text>
+      </view>
+    </view>
+    <view class="entry-btn" bindtap="goBudget">
+      <text class="entry-icon">💰</text>
+      <view>
+        <text class="entry-title">输入预算</text>
+        <text class="entry-desc">能买多少 TOKEN & 对话次数</text>
+      </view>
+    </view>
+    <view class="entry-btn" bindtap="goConversation">
+      <text class="entry-icon">💬</text>
+      <view>
+        <text class="entry-title">输入对话</text>
+        <text class="entry-desc">估算对话 TOKEN 消耗</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="note">数据仅供参考，以各厂商官网价格为准</view>
+</block>

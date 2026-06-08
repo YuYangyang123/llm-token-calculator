@@ -1,0 +1,69 @@
+<view style="text-align:center;padding:80rpx 0" wx:if="{{!ready}}">
+  <text style="font-size:60rpx">⏳</text>
+  <view style="color:#94a3b8;font-size:28rpx;margin-top:12rpx">加载中...</view>
+</view>
+
+<block wx:else>
+<view class="model-badge">
+  <text>当前模型：</text>
+  <text style="font-weight:700">{{modelLabel}}</text>
+</view>
+
+<view class="card">
+  <view class="card-title">💰 输入预算金额</view>
+  <view class="big-input-wrap">
+    <text class="big-input-prefix">{{symbol}}</text>
+    <input class="big-input" type="digit" value="{{budgetInput}}" bindinput="onInput" placeholder="输入金额"/>
+  </view>
+</view>
+
+<view class="card result-card" wx:if="{{result}}">
+  <view class="card-title">📊 可购买 TOKEN</view>
+  <view class="big-result">
+    <text class="result-number">{{result.totalTokens}}</text>
+    <text class="result-unit">tokens</text>
+  </view>
+  <view style="font-size:24rpx;color:#64748b;margin-top:10rpx">
+    <view style="display:flex;justify-content:space-between;padding:8rpx 0">
+      <text>预算</text><text>{{symbol}}{{budgetInput}}</text>
+    </view>
+    <view style="display:flex;justify-content:space-between;padding:8rpx 0">
+      <text>折合美元</text><text>${{result.budgetUSD}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="card" wx:if="{{conversations.length > 0}}">
+  <view class="card-title">💬 可支撑对话次数</view>
+  <view wx:for="{{conversations}}" wx:key="level" class="conv-row">
+    <view class="conv-header">
+      <text class="conv-icon">{{item.icon}}</text>
+      <text class="conv-name">{{item.name}}</text>
+      <text class="conv-per">{{item.tokens_per_conversation}}t/次</text>
+    </view>
+    <view class="conv-bar-wrap">
+      <view class="conv-bar-bg">
+        <view class="conv-bar-fill" style="width:{{item.count > 200 ? 100 : (item.count/200*100)}}%;background:{{item.color}}"></view>
+      </view>
+      <text class="conv-count"><strong>{{item.count}}</strong> 次</text>
+    </view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-title">📋 各大模型 TOKEN 单价</view>
+  <view class="card-desc">价格：{{currency === 'CNY' ? '人民币' : currency === 'EUR' ? '欧元' : '美元'}} / 1M tokens</view>
+  <view class="price-table">
+    <view class="price-header">
+      <text class="price-col1">模型</text>
+      <text class="price-col2">输入</text>
+      <text class="price-col3">输出</text>
+    </view>
+    <view wx:for="{{modelPrices}}" wx:key="id" class="price-row {{selectedModel && selectedModel.id === item.id ? 'current' : ''}}">
+      <text class="price-col1">{{item.provider}} {{item.name}}</text>
+      <text class="price-col2">{{item.inputDisplay}}</text>
+      <text class="price-col3">{{item.outputDisplay}}</text>
+    </view>
+  </view>
+</view>
+</block>

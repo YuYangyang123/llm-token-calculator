@@ -1,0 +1,64 @@
+<view style="text-align:center;padding:80rpx 0" wx:if="{{!ready}}">
+  <text style="font-size:60rpx">⏳</text>
+  <view style="color:#94a3b8;font-size:28rpx;margin-top:12rpx">加载中...</view>
+</view>
+
+<block wx:else>
+<view class="model-badge">
+  <text>当前模型：</text>
+  <text style="font-weight:700">{{modelLabel}}</text>
+</view>
+
+<view class="card">
+  <view class="card-title">📊 输入 TOKEN 数量</view>
+  <view class="big-input-wrap">
+    <input class="big-input" type="number" value="{{tokenInput}}" bindinput="onInput" placeholder="输入 TOKEN"/>
+    <text class="big-input-unit">tokens</text>
+  </view>
+  <view class="quick-btns">
+    <view class="quick-btn {{tokenInput === '500' ? 'active' : ''}}" data-val="500" bindtap="setQuick">500</view>
+    <view class="quick-btn {{tokenInput === '1000' ? 'active' : ''}}" data-val="1000" bindtap="setQuick">1K</view>
+    <view class="quick-btn {{tokenInput === '5000' ? 'active' : ''}}" data-val="5000" bindtap="setQuick">5K</view>
+    <view class="quick-btn {{tokenInput === '10000' ? 'active' : ''}}" data-val="10000" bindtap="setQuick">10K</view>
+    <view class="quick-btn {{tokenInput === '50000' ? 'active' : ''}}" data-val="50000" bindtap="setQuick">50K</view>
+    <view class="quick-btn {{tokenInput === '100000' ? 'active' : ''}}" data-val="100000" bindtap="setQuick">100K</view>
+    <view class="quick-btn {{tokenInput === '500000' ? 'active' : ''}}" data-val="500000" bindtap="setQuick">500K</view>
+    <view class="quick-btn {{tokenInput === '1000000' ? 'active' : ''}}" data-val="1000000" bindtap="setQuick">1M</view>
+  </view>
+</view>
+
+<view class="card result-card" wx:if="{{result}}">
+  <view class="card-title">💰 预估费用</view>
+  <view class="big-result">
+    <text class="result-symbol">{{symbol}}</text>
+    <text class="result-number">{{result.totalCost}}</text>
+  </view>
+  <view style="font-size:24rpx;color:#64748b;margin-top:10rpx">
+    <view style="display:flex;justify-content:space-between;padding:8rpx 0">
+      <text>📥 输入 ({{result.inTokens}} tokens)</text>
+      <text>{{symbol}}{{result.inCost}}</text>
+    </view>
+    <view style="display:flex;justify-content:space-between;padding:8rpx 0">
+      <text>📤 输出 ({{result.outTokens}} tokens)</text>
+      <text>{{symbol}}{{result.outCost}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="card" wx:if="{{conversations.length > 0}}">
+  <view class="card-title">💬 可支撑对话次数</view>
+  <view wx:for="{{conversations}}" wx:key="level" class="conv-row">
+    <view class="conv-header">
+      <text class="conv-icon">{{item.icon}}</text>
+      <text class="conv-name">{{item.name}}</text>
+      <text class="conv-per">{{item.tokens_per_conversation}}t/次</text>
+    </view>
+    <view class="conv-bar-wrap">
+      <view class="conv-bar-bg">
+        <view class="conv-bar-fill" style="width:{{item.count > 200 ? 100 : (item.count/200*100)}}%;background:{{item.color}}"></view>
+      </view>
+      <text class="conv-count"><strong>{{item.count}}</strong> 次</text>
+    </view>
+  </view>
+</view>
+</block>

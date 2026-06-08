@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/token/token",
+    "pages/budget/budget",
+    "pages/conversation/conversation"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#6366f1",
+    "navigationBarTitleText": "TOKEN 计算器",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f1f5f9"
+  },
+  "sitemapLocation": "sitemap.json"
+}
