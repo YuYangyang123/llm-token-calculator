@@ -75,11 +75,9 @@ if STATIC_DIR.exists():
     if assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
 
-    @app.get("/{full_path:path}")
-    async def serve_frontend(full_path: str = ""):
-        file_path = STATIC_DIR / full_path
-        if full_path and file_path.exists() and file_path.is_file():
-            return FileResponse(str(file_path))
+    @app.get("/")
+    async def serve_index():
+        """首页"""
         return FileResponse(str(STATIC_DIR / "index.html"))
 
 
