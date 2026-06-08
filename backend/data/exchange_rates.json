@@ -1,0 +1,19 @@
+{
+  "base": "USD",
+  "rates": {
+    "USD": 1.0,
+    "CNY": 7.25,
+    "EUR": 0.92
+  },
+  "symbols": {
+    "USD": "$",
+    "CNY": "¥",
+    "EUR": "€"
+  },
+  "labels": {
+    "USD": "美元 (USD)",
+    "CNY": "人民币 (RMB)",
+    "EUR": "欧元 (EUR)"
+  },
+  "updated_at": "2026-06-05"
+}

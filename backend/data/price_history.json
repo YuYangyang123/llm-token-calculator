@@ -1,0 +1,9 @@
+[
+  {
+    "timestamp": 1780883768.288014,
+    "date": "2026-06-08 01:56",
+    "model_id": "gpt-4o",
+    "input_price_per_1m_tokens": 2.5,
+    "output_price_per_1m_tokens": 10.0
+  }
+]

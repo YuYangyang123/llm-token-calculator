@@ -1,0 +1,95 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "极简",
+      "icon": "💬",
+      "token_range": [50, 300],
+      "tokens_per_conversation": 200,
+      "byte_coefficient": 0.8,
+      "color": "#4CAF50",
+      "description": "一句话级别的回答",
+      "examples": [
+        { "label": "简单问候", "estimated_tokens": 80, "prompt": "你好，今天天气怎么样？" },
+        { "label": "判断对错", "estimated_tokens": 150, "prompt": "判断：地球绕太阳一圈需要365天？" },
+        { "label": "短句翻译", "estimated_tokens": 200, "prompt": "把 Hello 翻译成中文" }
+      ]
+    },
+    {
+      "level": 2,
+      "name": "简单",
+      "icon": "📝",
+      "token_range": [300, 800],
+      "tokens_per_conversation": 600,
+      "byte_coefficient": 1.0,
+      "color": "#2196F3",
+      "description": "一小段话的回答",
+      "examples": [
+        { "label": "知识问答", "estimated_tokens": 400, "prompt": "介绍一下人工智能的发展历史" },
+        { "label": "文案润色", "estimated_tokens": 500, "prompt": "帮我润色这段产品介绍文案" },
+        { "label": "段落翻译", "estimated_tokens": 600, "prompt": "把这段200字的中文翻译成英文" }
+      ]
+    },
+    {
+      "level": 3,
+      "name": "中等",
+      "icon": "📄",
+      "token_range": [800, 2000],
+      "tokens_per_conversation": 1500,
+      "byte_coefficient": 1.2,
+      "color": "#FF9800",
+      "description": "几段话的回答",
+      "examples": [
+        { "label": "概念讲解", "estimated_tokens": 1200, "prompt": "详细解释什么是机器学习并举例" },
+        { "label": "商务邮件", "estimated_tokens": 1000, "prompt": "写一封商务邮件介绍公司新产品" },
+        { "label": "旅游攻略", "estimated_tokens": 1500, "prompt": "做一份东京3天自由行攻略" }
+      ]
+    },
+    {
+      "level": 4,
+      "name": "复杂",
+      "icon": "📊",
+      "token_range": [2000, 8000],
+      "tokens_per_conversation": 5000,
+      "byte_coefficient": 1.5,
+      "color": "#F44336",
+      "description": "一篇文章级别的回答",
+      "examples": [
+        { "label": "代码生成", "estimated_tokens": 3000, "prompt": "用 Python 写一个 REST API 服务" },
+        { "label": "长文写作", "estimated_tokens": 4000, "prompt": "写一篇3000字关于AI对教育影响的文章" },
+        { "label": "数据分析", "estimated_tokens": 5000, "prompt": "分析销售数据并给出策略建议" }
+      ]
+    },
+    {
+      "level": 5,
+      "name": "深度",
+      "icon": "🧠",
+      "token_range": [8000, 20000],
+      "tokens_per_conversation": 15000,
+      "byte_coefficient": 1.8,
+      "color": "#9C27B0",
+      "description": "多页内容的深度回答",
+      "examples": [
+        { "label": "技术方案", "estimated_tokens": 10000, "prompt": "设计高并发电商系统技术架构方案" },
+        { "label": "学术论文", "estimated_tokens": 15000, "prompt": "撰写大语言模型安全对齐综述论文" },
+        { "label": "复杂推理", "estimated_tokens": 12000, "prompt": "分析跨国公司市场进入策略" }
+      ]
+    },
+    {
+      "level": 6,
+      "name": "超深",
+      "icon": "🚀",
+      "token_range": [20000, 100000],
+      "tokens_per_conversation": 50000,
+      "byte_coefficient": 2.0,
+      "color": "#E91E63",
+      "description": "超大篇幅的深度研究",
+      "examples": [
+        { "label": "深度研究", "estimated_tokens": 30000, "prompt": "对某行业进行全面深度研究" },
+        { "label": "书籍章节", "estimated_tokens": 50000, "prompt": "撰写技术书籍完整章节含代码示例" },
+        { "label": "系统设计", "estimated_tokens": 40000, "prompt": "从零设计完整AI产品系统" }
+      ]
+    }
+  ],
+  "byte_calculation_note": "Token估算公式: token消耗 ≈ 字节数 × 等级系数 ÷ 2。中英文混合场景下，1个中文字符≈3字节≈1.5 tokens，1个英文字符≈1字节≈0.3 tokens"
+}

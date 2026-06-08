@@ -1,0 +1,37 @@
+[
+  {
+    "timestamp": "2026-06-08T01:55:49.128542+00:00",
+    "source": "OpenAI",
+    "status": "error",
+    "message": "HTTP 403",
+    "detail": {}
+  },
+  {
+    "timestamp": "2026-06-08T01:55:52.392957+00:00",
+    "source": "Anthropic",
+    "status": "warning",
+    "message": "网页抓取框架就绪，选择器需按实际页面维护",
+    "detail": {}
+  },
+  {
+    "timestamp": "2026-06-08T01:56:07.408862+00:00",
+    "source": "Google",
+    "status": "error",
+    "message": "",
+    "detail": {}
+  },
+  {
+    "timestamp": "2026-06-08T01:56:07.741214+00:00",
+    "source": "DeepSeek",
+    "status": "warning",
+    "message": "网页抓取框架就绪，选择器需按实际页面维护",
+    "detail": {}
+  },
+  {
+    "timestamp": "2026-06-08T01:56:07.742797+00:00",
+    "source": "System",
+    "status": "warning",
+    "message": "无价格更新，保留现有价格",
+    "detail": {}
+  }
+]
